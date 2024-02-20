@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchRandomGreeting } from '../redux/actions';
 
@@ -15,8 +16,13 @@ const Greeting = ({ greeting, fetchRandomGreeting }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  greeting: state.greeting
+Greeting.propTypes = {
+  greeting: PropTypes.string.isRequired,
+  fetchRandomGreeting: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  greeting: state.greeting,
 });
 
 export default connect(mapStateToProps, { fetchRandomGreeting })(Greeting);

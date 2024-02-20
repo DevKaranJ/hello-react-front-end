@@ -11,7 +11,7 @@ const greetingReducer = (state = '', action) => {
 };
 
 const rootReducer = combineReducers({
-  greeting: greetingReducer
+  greeting: greetingReducer,
 });
 
 export default rootReducer;
