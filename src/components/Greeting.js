@@ -1,14 +1,22 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getGreetingMessage } from '../redux/greetingSlice';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Greeting = () => {
-  const dispatch = useDispatch();
-  const greeting = useSelector((state) => state.greetings.value);
+  const [greeting, setGreeting] = useState('');
 
   useEffect(() => {
-    dispatch(getGreetingMessage());
-  }, [dispatch]);
+    const fetchGreeting = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/random_greeting');
+        setGreeting(response.data.greeting);
+      } catch (error) {
+        console.error('Error fetching greeting:', error);
+      }
+    };
+
+    fetchGreeting();
+  }, []);
+
   return (
     <div>
       <h2>Greeting Word</h2>

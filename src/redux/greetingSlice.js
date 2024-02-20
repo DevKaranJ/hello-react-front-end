@@ -13,13 +13,14 @@ const greetingSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getGreetingMessage.fulfilled, (state, action) => {
-        if (action.payload && action.payload.content) {
-          state.value = action.payload.content;
+        if (action.payload && action.payload.greeting) {
+          state.value = action.payload.greeting;
         } else {
           console.error('Invalid payload structure:', action.payload);
         }
       });
   },
 });
+
 export default greetingSlice.reducer;
 export { getGreetingMessage };
